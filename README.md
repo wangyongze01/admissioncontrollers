@@ -12,18 +12,12 @@
    - 将Jar包从共享卷复制到应用容器  
    - 自动挂载卷到主容器，提高部署效率  
 
-3. **安全与多租户支持**  
-   - 拦截非系统Namespace资源  
-   - 严格验证HTTP Method和Content-Type  
-   - 支持日志记录和调试  
-
 ---
 
 ## 技术栈
 - Kubernetes: Admission Webhook、Node/Pod对象Patch、Init Container  
 - Go语言: Webhook服务开发  
 - JSON Patch: 动态修改K8s资源对象  
-- CI/CD: 与流水线结合实现自动部署  
 
 ---
 
