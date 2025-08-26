@@ -1,0 +1,34 @@
+{
+  "hosts": [
+    "127.0.0.1",
+    "10.116.137.196",
+    "10.116.82.28",
+    "10.116.36.57",
+    "10.254.0.1",
+    "kubernetes",
+    "kubernetes.default",
+    "kubernetes.default.svc",
+    "kubernetes.default.svc.cluster",
+    "kubernetes.default.svc.cluster.local",
+    "aee.int10.svc.cluster.local",
+    "test-webhook",
+    "test-webhook.default.svc.cluster.local",
+    "test-webhook.default.svc",
+    "test-webhook.learning.svc.cluster.local",
+    "test-webhook.learning.svc",
+    "172.28.8.135"
+  ],
+  "key": {
+    "algo": "rsa",
+    "size": 2048
+  },
+  "names": [
+    {
+      "C": "AU",
+      "L": "Melbourne",
+      "O": "Example",
+      "OU": "CA",
+      "ST": "Example"
+    }
+  ]
+}

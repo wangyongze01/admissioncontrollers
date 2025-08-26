@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-webhook
+spec:
+  selector:
+    app: test-webhook
+  ports:
+    - port: 443
+      targetPort: 8443
+      name: application
+    - port: 80
+      targetPort: 80
+      name: metrics
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-webhook
+#  namespace: learning
+  labels:
+    app: test-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-webhook
+  template:
+    metadata:
+      labels:
+        app: test-webhook
+    spec:
+#      nodeSelector:
+#        kubernetes.io/os: linux
+      serviceAccountName: test-webhook
+#      securityContext:
+#        runAsNonRoot: true
+#        runAsUser: 1234
+      imagePullSecrets:
+        - name: cdp-registry-secret
+      containers:
+      - name: server
+        image: newharbor.ipinyou.com/alphadata/test-webhook:v2
+        imagePullPolicy: Always #IfNotPresent
+        ports:
+        - containerPort: 8443
+          name: tls
+        - containerPort: 80
+          name: metrics
+        volumeMounts:
+        - name: webhook-tls-certs
+          mountPath: /etc/webhook/certs/
+          readOnly: true
+      volumes:
+      - name: webhook-tls-certs
+        secret:
+          secretName: test-webhook-tls

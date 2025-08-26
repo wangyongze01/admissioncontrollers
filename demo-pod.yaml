@@ -1,0 +1,38 @@
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: demo-pod
+#  labels:
+#    test-webhook-enabled: "true"
+#spec:
+#  imagePullSecrets:
+#    - name: cdp-registry-secret
+#  containers:
+#  - name: nginx
+#    image: newharbor.ipinyou.com/deepzero/nginx:stable-alpine-slim
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-pod
+  namespace: learning
+  labels:
+    app: demo-pod
+    test-webhook-enabled: "true" #这个代表开启webhook功能
+    ssoimgres: dasdsaddsa：v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-pod
+  template:
+    metadata:
+      labels:
+        app: demo-pod
+    spec:
+      imagePullSecrets:
+        - name: cdp-registry-secret
+      containers:
+        - name: nginx
+          image: newharbor.ipinyou.com/deepzero/nginx:stable-alpine-slim
+          imagePullPolicy: Always
