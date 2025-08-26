@@ -4,8 +4,8 @@
 该项目基于 **Kubernetes Admission Webhook**，实现了以下功能：  
 
 1. **节点资源超卖防控**  
-   - 自动拦截Node对象的创建/更新请求  
-   - 通过Patch限制CPU/内存分配，防止节点超卖导致调度异常  
+   - 拦截Node对象请求并动态修改allocatable CPU/内存  
+   - 利用节点低资源利用率，实现资源超卖，提高集群整体吞吐量  
 
 2. **Deployment自动Jar包注入**  
    - 在Pod创建时动态添加Init Container  
